@@ -1,0 +1,66 @@
+Ray Tracing : CSCI 5229 Project
+
+Author: Ajay Narasimha Mopidevi
+
+Instructions:
+To build: make
+To run: ./project
+
+Key bindings:
+n/N        Increase/decrease maximum number of reflections
+arrows     Change view angle
+PgDn/PgUp  Zoom in and out
+0          Reset view angle
+ESC        Exit
+N          Change Maximum levels of reflection
+A          Move the light source by -10 in X-direction
+D          Move the light source by +10 in X-direction
+S          Move the light source by -10 in Y-direction
+W          Move the light source by +10 in Y-direction
+m/M        Change Scene that needs to be rendered
+           Mode 0: Scene with 2 speheres 
+           Mode 1: Scene with a sphere and a cube
+           Mode 2: Scene with 2 cubes
+           Mode 3: Scene with a sphere, cube and coil (OBJ file)
+           Mode 4: How manny Spheres in the scene? (Explained in detail below)
+
+Project Description: Raytrace a complex scene and optimize the runtime using OPENCL.
+All the scenes could capture the reflections of the objects in the scene.
+
+Mode 4: 
+    - An open box with only 3 faces, and each face having different color
+    - 3 Spheres within the box (if the box is closed)
+    - Initially set to 0 reflections (maxlev = 1) and pre-defined th,ph for better visualization
+    - Increase maxlev (using N key) to see the reflections of spheres on faces of the cube
+    - Also when maxlev is increased, the faces of the cube will generate reflections on other faces
+
+    
+
+The base code is from the example 23 of CSCI 5239.
+Tasks Accomplished:
+1. Added support for Raytracing a triangle. 
+2. Added support for loading a obj file as set of triangles and Raytrace the scene with objects.
+3. Added support for raytracing a scene with combination of spheres and triangles. If ray is defined as O+tD (O-origin, D-direction),   the least t of both spheres and triangles is considered as the intersected object.
+4. Added OPENCL support to reduce the runtime.
+5. Created a scene (Mode 4) to display the mirror-like reflections.
+
+Failed Attempts:
+Implemted a Grid accelerate structure to reduce the number of RayTriangle Intersections checks for each pixel.
+It constructs a grid(Cube) that exactly encloses the object and considers only rays that hit the grid.
+Further the grid is sub-divided into cells(smaller cubes), where each cells contains subset of triangles from the object. 
+A triangle can be present in multiple cells
+So if a ray hits the grid, the cells alongs the ray direction are only checked for the intersection.
+Once a ray hits a cell, all the triangles are checked for an intersection 
+(unless if the triangle is already checked for intersection in some previous cell).
+
+This works only at certain angle.
+
+
+
+OPENCL Support:
+Install OPENCL
+    NVIDIA: apt-get install nvidia-cuda-toolkit
+    Other: apt-get install -y pocl-opencl-icd
+
+
+Time Spent for the project : 104 Hours
