@@ -1,12 +1,15 @@
-Ray Tracing : CSCI 5229 Project
-
-Author: Ajay Narasimha Mopidevi
-
-Instructions:
+### RayTracing using OPENCL
+# Instructions:
 To build: make
 To run: ./project
 
-Key bindings:
+OPENCL Support:
+Install OPENCL
+    NVIDIA: apt-get install nvidia-cuda-toolkit
+    Other: apt-get install -y pocl-opencl-icd
+
+
+# Key bindings:
 n/N        Increase/decrease maximum number of reflections
 arrows     Change view angle
 PgDn/PgUp  Zoom in and out
@@ -36,7 +39,6 @@ Mode 4:
 
     
 
-The base code is from the example 23 of CSCI 5239.
 Tasks Accomplished:
 1. Added support for Raytracing a triangle. 
 2. Added support for loading a obj file as set of triangles and Raytrace the scene with objects.
@@ -57,10 +59,5 @@ This works only at certain angle.
 
 
 
-OPENCL Support:
-Install OPENCL
-    NVIDIA: apt-get install nvidia-cuda-toolkit
-    Other: apt-get install -y pocl-opencl-icd
 
 
-Time Spent for the project : 104 Hours
